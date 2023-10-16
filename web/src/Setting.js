@@ -175,6 +175,10 @@ export const OtherProviderInfo = {
       logo: `${StaticBaseUrl}/img/social_aws.png`,
       url: "https://aws.amazon.com/s3",
     },
+    "Ovh S3": {
+      logo: `https://www.ovhcloud.com/it/favicon.ico`,
+      url: "https://www.ovhcloud.com/it/public-cloud/object-storage/",
+    },
     "MinIO": {
       logo: "https://min.io/resources/img/logo.svg",
       url: "https://min.io/",
