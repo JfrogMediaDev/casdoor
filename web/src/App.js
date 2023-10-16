@@ -633,20 +633,20 @@ class App extends Component {
   renderFooter() {
     return (
       <React.Fragment>
-        {/* {!this.state.account ? null : <div style={{display: "none"}} id="CasdoorApplicationName" value={this.state.account.signupApplication} />}
+        {!this.state.account ? null : <div style={{display: "none"}} id="CasdoorApplicationName" value={this.state.account.signupApplication} />}
         <Footer id="footer" style={
           {
             textAlign: "center",
           }
         }>
-          {
+          {/* {
             Conf.CustomFooter !== null ? Conf.CustomFooter : (
               <React.Fragment>
                 Powered by <a target="_blank" href="https://casdoor.org" rel="noreferrer"><img style={{paddingBottom: "3px"}} height={"20px"} alt={"Casdoor"} src={this.state.logo} /></a>
               </React.Fragment>
             )
-          }
-        </Footer> */}
+          } */}
+        </Footer>
       </React.Fragment>
     );
   }

@@ -1,7 +1,7 @@
 FROM node:16.18.0 AS FRONT
 WORKDIR /web
 COPY ./web .
-RUN yarn install --frozen-lockfile --network-timeout 1000000 && yarn run build
+RUN yarn install --frozen-lockfile --network-timeout 10000000 && yarn run build
 
 
 FROM golang:1.19.9 AS BACK
@@ -36,27 +36,27 @@ COPY --from=FRONT --chown=$USER:$USER /web/build ./web/build
 ENTRYPOINT ["/server"]
 
 
-FROM debian:latest AS db
-RUN apt update \
-    && apt install -y \
-        mariadb-server \
-        mariadb-client \
-    && rm -rf /var/lib/apt/lists/*
+# FROM debian:latest AS db
+# RUN apt update \
+#     && apt install -y \
+#         mariadb-server \
+#         mariadb-client \
+#     && rm -rf /var/lib/apt/lists/*
 
 
-FROM db AS ALLINONE
-LABEL MAINTAINER="https://casdoor.org/"
+# FROM db AS ALLINONE
+# LABEL MAINTAINER="https://casdoor.org/"
 
-RUN apt update
-RUN apt install -y ca-certificates && update-ca-certificates
+# RUN apt update
+# RUN apt install -y ca-certificates && update-ca-certificates
 
-WORKDIR /
-COPY --from=BACK /go/src/casdoor/server ./server
-COPY --from=BACK /go/src/casdoor/swagger ./swagger
-COPY --from=BACK /go/src/casdoor/docker-entrypoint.sh /docker-entrypoint.sh
-COPY --from=BACK /go/src/casdoor/conf/app.conf ./conf/app.conf
-COPY --from=BACK /go/src/casdoor/version_info.txt ./go/src/casdoor/version_info.txt
-COPY --from=FRONT /web/build ./web/build
+# WORKDIR /
+# COPY --from=BACK /go/src/casdoor/server ./server
+# COPY --from=BACK /go/src/casdoor/swagger ./swagger
+# COPY --from=BACK /go/src/casdoor/docker-entrypoint.sh /docker-entrypoint.sh
+# COPY --from=BACK /go/src/casdoor/conf/app.conf ./conf/app.conf
+# COPY --from=BACK /go/src/casdoor/version_info.txt ./go/src/casdoor/version_info.txt
+# COPY --from=FRONT /web/build ./web/build
 
-ENTRYPOINT ["/bin/bash"]
-CMD ["/docker-entrypoint.sh"]
+# ENTRYPOINT ["/bin/bash"]
+# CMD ["/docker-entrypoint.sh"]

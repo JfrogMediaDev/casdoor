@@ -176,7 +176,7 @@ export const OtherProviderInfo = {
       url: "https://aws.amazon.com/s3",
     },
     "Ovh S3": {
-      logo: `https://www.ovhcloud.com/it/favicon.ico`,
+      logo: "https://www.ovhcloud.com/it/favicon.ico",
       url: "https://www.ovhcloud.com/it/public-cloud/object-storage/",
     },
     "MinIO": {
