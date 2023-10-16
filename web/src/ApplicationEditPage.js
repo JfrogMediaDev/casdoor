@@ -30,10 +30,10 @@ import ProviderTable from "./table/ProviderTable";
 import SignupTable from "./table/SignupTable";
 import PromptPage from "./auth/PromptPage";
 import copy from "copy-to-clipboard";
+import ThemeEditor from "./common/theme/ThemeEditor";
 
 import {Controlled as CodeMirror} from "react-codemirror2";
 import "codemirror/lib/codemirror.css";
-import ThemeEditor from "./common/theme/ThemeEditor";
 
 require("codemirror/theme/material-darker.css");
 require("codemirror/mode/htmlmixed/htmlmixed");
@@ -1001,7 +1001,7 @@ class ApplicationEditPage extends React.Component {
     );
   }
 
-  submitApplicationEdit(willExist) {
+  submitApplicationEdit(exitAfterSave) {
     const application = Setting.deepCopy(this.state.application);
     application.providers = application.providers?.filter(provider => this.state.providers.map(provider => provider.name).includes(provider.name));
 
@@ -1013,7 +1013,7 @@ class ApplicationEditPage extends React.Component {
             applicationName: this.state.application.name,
           });
 
-          if (willExist) {
+          if (exitAfterSave) {
             this.props.history.push("/applications");
           } else {
             this.props.history.push(`/applications/${this.state.application.organization}/${this.state.application.name}`);

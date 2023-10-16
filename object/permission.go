@@ -15,6 +15,7 @@
 package object
 
 import (
+	"fmt"
 	"strings"
 
 	"github.com/casdoor/casdoor/conf"
@@ -149,6 +150,24 @@ func UpdatePermission(id string, permission *Permission) (bool, error) {
 		return false, nil
 	}
 
+	if permission.ResourceType == "Application" {
+		model, err := GetModelEx(util.GetId(owner, permission.Model))
+		if err != nil {
+			return false, err
+		} else if model == nil {
+			return false, fmt.Errorf("the model: %s for permission: %s is not found", permission.Model, permission.GetId())
+		}
+
+		modelCfg, err := getModelCfg(model)
+		if err != nil {
+			return false, err
+		}
+
+		if len(strings.Split(modelCfg["p"], ",")) != 3 {
+			return false, fmt.Errorf("the model: %s for permission: %s is not valid, Casbin model's [policy_defination] section should have 3 elements", permission.Model, permission.GetId())
+		}
+	}
+
 	affected, err := ormer.Engine.ID(core.PK{owner, name}).AllCols().Update(permission)
 	if err != nil {
 		return false, err
@@ -217,16 +236,15 @@ func AddPermissionsInBatch(permissions []*Permission) bool {
 	}
 
 	affected := false
-	for i := 0; i < (len(permissions)-1)/batchSize+1; i++ {
-		start := i * batchSize
-		end := (i + 1) * batchSize
+	for i := 0; i < len(permissions); i += batchSize {
+		start := i
+		end := i + batchSize
 		if end > len(permissions) {
 			end = len(permissions)
 		}
 
 		tmp := permissions[start:end]
-		// TODO: save to log instead of standard output
-		// fmt.Printf("Add Permissions: [%d - %d].\n", start, end)
+		fmt.Printf("The syncer adds permissions: [%d - %d]\n", start, end)
 		if AddPermissions(tmp) {
 			affected = true
 		}
@@ -406,10 +424,10 @@ func (p *Permission) GetId() string {
 }
 
 func (p *Permission) isUserHit(name string) bool {
-	targetOrg, _ := util.GetOwnerAndNameFromId(name)
+	targetOrg, targetName := util.GetOwnerAndNameFromId(name)
 	for _, user := range p.Users {
 		userOrg, userName := util.GetOwnerAndNameFromId(user)
-		if userOrg == targetOrg && userName == "*" {
+		if userOrg == targetOrg && (userName == "*" || userName == targetName) {
 			return true
 		}
 	}
@@ -418,7 +436,7 @@ func (p *Permission) isUserHit(name string) bool {
 
 func (p *Permission) isResourceHit(name string) bool {
 	for _, resource := range p.Resources {
-		if name == resource {
+		if resource == "*" || resource == name {
 			return true
 		}
 	}
