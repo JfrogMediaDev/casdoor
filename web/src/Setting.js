@@ -1007,6 +1007,7 @@ export function getProviderTypeOptions(category) {
         {id: "Local File System", name: "Local File System"},
         {id: "AWS S3", name: "AWS S3"},
         {id: "MinIO", name: "MinIO"},
+        {id: "Ovh S3", name: "Ovh S3"},
         {id: "Aliyun OSS", name: "Alibaba Cloud OSS"},
         {id: "Tencent Cloud COS", name: "Tencent Cloud COS"},
         {id: "Azure Blob", name: "Azure Blob"},

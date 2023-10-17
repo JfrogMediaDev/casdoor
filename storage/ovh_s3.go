@@ -32,5 +32,7 @@ func NewOvhS3StorageProvider(clientId string, clientSecret string, region string
 		S3ForcePathStyle: true,
 	})
 
+	
+
 	return sp
 }

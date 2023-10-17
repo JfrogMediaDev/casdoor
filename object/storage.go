@@ -71,6 +71,7 @@ func GetTruncatedPath(provider *Provider, fullFilePath string, limit int) string
 	return fullFilePath
 }
 
+
 func GetUploadFileUrl(provider *Provider, fullFilePath string, hasTimestamp bool) (string, string) {
 	escapedPath := util.UrlJoin(provider.PathPrefix, fullFilePath)
 	objectKey := util.UrlJoin(util.GetUrlPath(provider.Domain), escapedPath)
@@ -89,6 +90,9 @@ func GetUploadFileUrl(provider *Provider, fullFilePath string, hasTimestamp bool
 	if provider.Type == "Azure Blob" {
 		host = util.UrlJoin(host, provider.Bucket)
 	}
+	if provider.Type == "Ovh S3" {
+		host = util.UrlJoin(host, provider.Bucket)
+	}
 
 	fileUrl := util.UrlJoin(host, escapePath(objectKey))
 
@@ -99,6 +103,8 @@ func GetUploadFileUrl(provider *Provider, fullFilePath string, hasTimestamp bool
 	if provider.Type == "Tencent Cloud COS" {
 		objectKey = escapePath(objectKey)
 	}
+
+	
 
 	return fileUrl, objectKey
 }
