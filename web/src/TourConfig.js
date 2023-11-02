@@ -7,8 +7,8 @@ export const TourObj = {
       description: "You can learn more about the use of CasDoor at https://casdoor.org/.",
       cover: (
         <img
-          alt="casdoor.png"
-          src="https://cdn.casbin.org/img/casdoor-logo_1185x256.png"
+          alt="linkflot.png"
+          src="https://linkflot.com/logook.png"
         />
       ),
     },
