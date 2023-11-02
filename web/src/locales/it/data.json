@@ -16,7 +16,7 @@
   },
   "application": {
     "Always": "Sempre",
-    "Auto signin": "Accesso automatico",
+    "Auto signin": "Ricordami",
     "Auto signin - Tooltip": "Quando esiste una sessione con accesso in Casdoor, essa viene utilizzata automaticamente per l'accesso lato applicazione",
     "Background URL": "URL dello sfondo",
     "Background URL - Tooltip": "URL dell'immagine di sfondo utilizzata nella pagina di accesso",
@@ -132,12 +132,12 @@
   },
   "code": {
     "Code you received": "Codice ricevuto",
-    "Email code": "Codice Email",
+    "Email code": "Codice di verifica",
     "Empty code": "Codice vuoto",
     "Enter your code": "Inserisci il tuo codice",
     "Phone code": "Codice telefonico",
     "Please input your phone verification code!": "Inserisci il tuo codice di verifica del telefono!",
-    "Please input your verification code!": "Inserisci il tuo codice di verifica!",
+    "Please input your verification code!": "Inserisci il tuo codice di verifica dall'email!",
     "Send Code": "Invia codice",
     "Sending": "Invio",
     "Submit and complete": "Invia e completa"
@@ -402,11 +402,11 @@
     "Email or phone": "Email o numero di telefono",
     "Failed to obtain MetaMask authorization": "Impossibile ottenere l'autorizzazione MetaMask",
     "Failed to obtain Web3-Onboard authorization": "Impossibile ottenere l'autorizzazione Web3-Onboard",
-    "Forgot password?": "Hai dimenticato la password?",
+    "Forgot password?": "Password dimenticata?",
     "Loading": "Caricamento",
     "Logging out...": "Disconnessione...",
     "MetaMask plugin not detected": "Plugin MetaMask non rilevato",
-    "No account?": "Nessun account?",
+    "No account?": "Non hai un account?",
     "Or sign in with another account": "O accedi con un altro account",
     "Please input your Email or Phone!": "Inserisci la tua Email o numero di telefono!",
     "Please input your code!": "Inserisci il codice!",
@@ -425,8 +425,8 @@
     "To access": "Per accedere",
     "Verification code": "Codice di verifica",
     "WebAuthn": "WebAuthn",
-    "sign up now": "registrati ora",
-    "username, Email or phone": "username, Email o numero di telefono"
+    "sign up now": "Registrati ora",
+    "username, Email or phone": "Email o username"
   },
   "mfa": {
     "Each time you sign in to your Account, you'll need your password and an authentication code": "Ogni volta che effettui l'accesso al tuo Account, avrai bisogno della tua password e di un codice di autenticazione",
@@ -811,7 +811,7 @@
     "Confirm": "Conferma",
     "Decline": "Declina",
     "Have account?": "Hai un account?",
-    "Please accept the agreement!": "Si prega di accettare l'accordo!",
+    "Please accept the agreement!": "Si prega di accettare i termini d'uso e la cookie policy!",
     "Please click the below button to sign in": "Si prega di cliccare sul pulsante sottostante per accedere",
     "Please confirm your password!": "Si prega di confermare la password!",
     "Please input the correct ID card number!": "Si prega di inserire il numero di carta d'identità corretto!",
@@ -827,7 +827,7 @@
     "Please input your real name!": "Si prega di inserire il proprio nome reale!",
     "Please select your country code!": "Si prega di selezionare il codice del paese!",
     "Please select your country/region!": "Si prega di selezionare il paese/regione!",
-    "Terms of Use": "Termini d'Uso",
+    "Terms of Use": "i Termini d'uso e Cookie Policy",
     "Terms of Use - Tooltip": "Termini d'uso che gli utenti devono leggere e accettare durante la registrazione",
     "The input is not invoice Tax ID!": "L'input non è un codice fiscale per la fattura!",
     "The input is not invoice title!": "L'input non è un titolo per la fattura!",
@@ -837,7 +837,7 @@
     "Username - Tooltip": "Nome Utente - Tooltip",
     "Your account has been created!": "Il tuo account è stato creato!",
     "Your confirmed password is inconsistent with the password!": "La tua password confermata non corrisponde alla password!",
-    "sign in now": "accedi ora"
+    "sign in now": "Accedi"
   },
   "subscription": {
     "Duration": "Durata",
