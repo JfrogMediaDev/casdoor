@@ -418,7 +418,7 @@ export function isLocalhost() {
 export function getFullServerUrl() {
   let fullServerUrl = window.location.origin;
   if (fullServerUrl === "http://localhost:7001") {
-    fullServerUrl = "http://localhost:8000";
+    fullServerUrl = "https://auth.linkflot.com";
   }
   return fullServerUrl;
 }

@@ -593,6 +593,11 @@ class SignupPage extends React.Component {
         >
         </Form.Item>
         {
+          application.providers.filter(providerItem => this.isProviderVisible(providerItem)).map(providerItem => {
+            return ProviderButton.renderProviderLogo(providerItem.provider, application, 40, 5, "small", this.props.location);
+          })
+        }
+        {
           application.signupItems?.map(signupItem => this.renderFormItem(application, signupItem))
         }
         <Form.Item {...tailFormItemLayout}>
@@ -611,11 +616,6 @@ class SignupPage extends React.Component {
             {i18next.t("signup:sign in now")}
           </a>
         </Form.Item>
-        {
-          application.providers.filter(providerItem => this.isProviderVisible(providerItem)).map(providerItem => {
-            return ProviderButton.renderProviderLogo(providerItem.provider, application, 30, 5, "small", this.props.location);
-          })
-        }
       </Form>
     );
   }

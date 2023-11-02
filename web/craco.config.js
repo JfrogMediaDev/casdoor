@@ -4,39 +4,39 @@ module.exports = {
   devServer: {
     proxy: {
       "/api": {
-        target: "http://localhost:8000",
+        target: "https://auth.linkflot.com",
         changeOrigin: true,
       },
       "/swagger": {
-        target: "http://localhost:8000",
+        target: "https://auth.linkflot.com",
         changeOrigin: true,
       },
       "/files": {
-        target: "http://localhost:8000",
+        target: "https://auth.linkflot.com",
         changeOrigin: true,
       },
       "/.well-known/openid-configuration": {
-        target: "http://localhost:8000",
+        target: "https://auth.linkflot.com",
         changeOrigin: true,
       },
       "/cas/serviceValidate": {
-        target: "http://localhost:8000",
+        target: "https://auth.linkflot.com",
         changeOrigin: true,
       },
       "/cas/proxyValidate": {
-        target: "http://localhost:8000",
+        target: "https://auth.linkflot.com",
         changeOrigin: true,
       },
       "/cas/proxy": {
-        target: "http://localhost:8000",
+        target: "https://auth.linkflot.com",
         changeOrigin: true,
       },
       "/cas/validate": {
-        target: "http://localhost:8000",
+        target: "https://auth.linkflot.com",
         changeOrigin: true,
       },
       "/scim": {
-        target: "http://localhost:8000",
+        target: "https://auth.linkflot.com",
         changeOrigin: true,
       }
     },

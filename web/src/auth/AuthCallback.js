@@ -44,7 +44,7 @@ class AuthCallback extends React.Component {
   }
 
   getResponseType() {
-    // "http://localhost:8000"
+    // "https://auth.linkflot.com"
     const authServerUrl = authConfig.serverUrl;
 
     const innerParams = this.getInnerParams();

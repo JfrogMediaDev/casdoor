@@ -419,6 +419,7 @@
     "Sign In": "Sign In",
     "Sign in with WebAuthn": "Sign in with WebAuthn",
     "Sign in with {type}": "Sign in with {type}",
+    "Sign up with {type}": "Sign up with {type}",
     "Signing in...": "Signing in...",
     "Successfully logged in with WebAuthn credentials": "Successfully logged in with WebAuthn credentials",
     "The input is not valid Email or phone number!": "The input is not valid Email or phone number!",

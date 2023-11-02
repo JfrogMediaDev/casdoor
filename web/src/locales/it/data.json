@@ -419,6 +419,7 @@
     "Sign In": "Accedi",
     "Sign in with WebAuthn": "Accedi con WebAuthn",
     "Sign in with {type}": "Accedi con {type}",
+    "Sign up with {type}": "Iscriviti con {type}",
     "Signing in...": "Accesso in corso...",
     "Successfully logged in with WebAuthn credentials": "Accesso effettuato con successo con le credenziali WebAuthn",
     "The input is not valid Email or phone number!": "L'input non è un indirizzo Email o numero di telefono valido!",

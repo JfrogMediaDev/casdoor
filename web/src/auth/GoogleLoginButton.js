@@ -26,7 +26,7 @@ const config = {
   text: "Sign in with Google",
   icon: Icon,
   iconFormat: name => `fa fa-${name}`,
-  style: {background: "#ffffff", color: "#000000"},
+  style: {background: "#f2f2f2", color: "#000000", boxShadow: "rgba(0, 0, 0, 0.2) 0px 0px 0px 1px"},
   activeStyle: {background: "#eff0ee"},
 };
 

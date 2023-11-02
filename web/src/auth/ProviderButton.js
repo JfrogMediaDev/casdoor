@@ -50,7 +50,64 @@ function getSigninButton(provider) {
   if (provider.type === "GitHub") {
     return <GithubLoginButton text={text} align={"center"} />;
   } else if (provider.type === "Google") {
-    return <GoogleLoginButton text={text} align={"center"} />;
+    return <GoogleLoginButton text={text} align={"center"} style={{boxShadow: "rgba(0, 0, 0, 0.2) 0px 0px 0px 1px", backgroundColor: "#f2f2f2"}} />;
+  } else if (provider.type === "QQ") {
+    return <QqLoginButton text={text} align={"center"} />;
+  } else if (provider.type === "Facebook") {
+    return <FacebookLoginButton text={text} align={"center"} />;
+  } else if (provider.type === "Weibo") {
+    return <WeiboLoginButton text={text} align={"center"} />;
+  } else if (provider.type === "Gitee") {
+    return <GiteeLoginButton text={text} align={"center"} />;
+  } else if (provider.type === "WeChat") {
+    return <WechatLoginButton text={text} align={"center"} />;
+  } else if (provider.type === "DingTalk") {
+    return <DingTalkLoginButton text={text} align={"center"} />;
+  } else if (provider.type === "LinkedIn") {
+    return <LinkedInLoginButton text={text} align={"center"} />;
+  } else if (provider.type === "WeCom") {
+    return <WeComLoginButton text={text} align={"center"} />;
+  } else if (provider.type === "Lark") {
+    return <LarkLoginButton text={text} align={"center"} />;
+  } else if (provider.type === "GitLab") {
+    return <GitLabLoginButton text={text} align={"center"} />;
+  } else if (provider.type === "ADFS") {
+    return <AdfsLoginButton text={text} align={"center"} />;
+  } else if (provider.type === "Casdoor") {
+    return <CasdoorLoginButton text={text} align={"center"} />;
+  } else if (provider.type === "Baidu") {
+    return <BaiduLoginButton text={text} align={"center"} />;
+  } else if (provider.type === "Alipay") {
+    return <AlipayLoginButton text={text} align={"center"} />;
+  } else if (provider.type === "Infoflow") {
+    return <InfoflowLoginButton text={text} align={"center"} />;
+  } else if (provider.type === "Apple") {
+    return <AppleLoginButton text={text} align={"center"} />;
+  } else if (provider.type === "AzureAD") {
+    return <AzureADLoginButton text={text} align={"center"} />;
+  } else if (provider.type === "Slack") {
+    return <SlackLoginButton text={text} align={"center"} />;
+  } else if (provider.type === "Steam") {
+    return <SteamLoginButton text={text} align={"center"} />;
+  } else if (provider.type === "Bilibili") {
+    return <BilibiliLoginButton text={text} align={"center"} />;
+  } else if (provider.type === "Okta") {
+    return <OktaLoginButton text={text} align={"center"} />;
+  } else if (provider.type === "Douyin") {
+    return <DouyinLoginButton text={text} align={"center"} />;
+  } else {
+    return <LoginButton key={provider.type} type={provider.type} logoUrl={getProviderLogoURL(provider)} />;
+  }
+}
+
+// eslint-disable-next-line unused-imports/no-unused-vars
+function getSignupButton(provider) {
+  const text = i18next.t("login:Sign up with {type}").replace("{type}", provider.displayName !== "" ? provider.displayName : provider.type);
+  if (provider.type === "GitHub") {
+    return <GithubLoginButton text={text} align={"center"} />;
+  } else if (provider.type === "Google") {
+
+    return <GoogleLoginButton text={text} align={"center"} style={{boxShadow: "rgba(0, 0, 0, 0.2) 0px 0px 0px 1px", backgroundColor: "#f2f2f2"}} />;
   } else if (provider.type === "QQ") {
     return <QqLoginButton text={text} align={"center"} />;
   } else if (provider.type === "Facebook") {
@@ -152,7 +209,10 @@ export function renderProviderLogo(provider, application, width, margin, size, l
       } else {
         return (
           <a key={provider.displayName} href={Provider.getAuthUrl(application, provider, "signup")}>
-            <img width={width} height={width} src={getProviderLogoURL(provider)} alt={provider.displayName} style={{margin: margin}} />
+            {
+              location.pathname.includes("signup") ? getSignupButton(provider) : getSigninButton(provider)
+            }
+            {/* <img width={width} height={width} src={getProviderLogoURL(provider)} alt={provider.displayName} style={{margin: margin}} /> */}
           </a>
         );
       }

@@ -16,11 +16,13 @@ import React from "react";
 import * as Setting from "../../Setting";
 import {Dropdown} from "antd";
 import "../../App.less";
-import {GlobalOutlined} from "@ant-design/icons";
+// import {GlobalOutlined} from "@ant-design/icons";
 
 function flagIcon(country, alt) {
+  // eslint-disable-next-line no-console
+  console.log(country, "GOT THIS");
   return (
-    <img width={24} alt={alt} src={`${Setting.StaticBaseUrl}/flag-icons/${country}.svg`} />
+    <img width={24} alt={alt} src={`${Setting.StaticBaseUrl}/flag-icons/${country.toUpperCase()}.svg`} />
   );
 }
 
@@ -29,6 +31,8 @@ class LanguageSelect extends React.Component {
     super(props);
     this.state = {
       classes: props,
+      selected: "",
+      icon: "",
       languages: props.languages ?? Setting.Countries.map(item => item.key),
     };
 
@@ -51,12 +55,18 @@ class LanguageSelect extends React.Component {
     const languageItems = this.getOrganizationLanguages(this.state.languages);
     const onClick = (e) => {
       Setting.setLanguage(e.key);
+      this.setState({selected: e.key, icon: Setting.Countries.filter((country) => country.key === e.key)[0].country});
     };
-
+    if (this.state.selected === "") {
+      this.setState({selected: languageItems[0].key, icon: Setting.Countries.filter((country) => country.key === languageItems[0].key)[0].country});
+    }
     return (
       <Dropdown menu={{items: languageItems, onClick}} >
         <div className="select-box" style={{display: languageItems.length === 0 ? "none" : null, ...this.props.style}} >
-          <GlobalOutlined style={{fontSize: "24px", color: "#4d4d4d"}} />
+          {
+            flagIcon(this.state.icon, this.state.selected)
+          }
+          {/* <GlobalOutlined style={{fontSize: "24px", color: "#4d4d4d"}} /> */}
         </div>
       </Dropdown>
     );
