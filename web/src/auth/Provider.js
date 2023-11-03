@@ -393,8 +393,10 @@ export function getAuthUrl(application, provider, method) {
   } else if (provider.type === "Apple") {
     redirectUri = `${window.location.origin}/api/callback`;
   }
+  // eslint-disable-next-line no-console
+  console.log(provider);
 
-  if (provider.type === "Google" || provider.type === "GitHub" || provider.type === "QQ" || provider.type === "Facebook"
+  if (provider.type === "Google" || provider.type === "GitHub" || provider.type === "QQ"
     || provider.type === "Weibo" || provider.type === "Gitee" || provider.type === "LinkedIn" || provider.type === "GitLab" || provider.type === "AzureAD"
     || provider.type === "Slack" || provider.type === "Line" || provider.type === "Amazon" || provider.type === "Auth0" || provider.type === "BattleNet"
     || provider.type === "Bitbucket" || provider.type === "Box" || provider.type === "CloudFoundry" || provider.type === "Dailymotion"
@@ -406,6 +408,8 @@ export function getAuthUrl(application, provider, method) {
     || provider.type === "Twitch" || provider.type === "Typetalk" || provider.type === "Uber" || provider.type === "VK" || provider.type === "Wepay"
     || provider.type === "Xero" || provider.type === "Yahoo" || provider.type === "Yammer" || provider.type === "Yandex" || provider.type === "Zoom") {
     return `${endpoint}?client_id=${provider.clientId}&redirect_uri=${redirectUri}&scope=${scope}&response_type=code&state=${state}`;
+  } else if (provider.type === "Facebook") {
+    return `${endpoint}?client_id=${provider.clientId}&redirect_uri=${redirectUri}&scope=${scope}&response_type=code&state=${state}&config_id=${provider.providerUrl}`;
   } else if (provider.type === "DingTalk") {
     return `${endpoint}?client_id=${provider.clientId}&redirect_uri=${redirectUri}&scope=${scope}&response_type=code&prompt=consent&state=${state}`;
   } else if (provider.type === "WeChat") {

@@ -2,7 +2,7 @@
   "account": {
     "Logout": "Esci",
     "My Account": "Il Mio Account",
-    "Sign Up": "Registrati"
+    "Sign Up": "Registrati Gratis"
   },
   "adapter": {
       "Duplicated policy rules": "Regole di politica duplicate",
@@ -15,7 +15,7 @@
       "Sync policies successfully": "Sincronizzazione delle politiche riuscita"
   },
   "application": {
-    "Or" : "Oppure",
+    "Or" : "Oppure usa l'email",
     "Always": "Sempre",
     "Auto signin": "Ricordami",
     "Auto signin - Tooltip": "Quando esiste una sessione con accesso in Casdoor, essa viene utilizzata automaticamente per l'accesso lato applicazione",
@@ -813,7 +813,7 @@
     "Confirm": "Conferma",
     "Decline": "Declina",
     "Have account?": "Hai un account?",
-    "Please accept the agreement!": "Si prega di accettare i termini d'uso e la cookie policy!",
+    "Please accept the agreement!": "Si prega di accettare i termini d'uso!",
     "Please click the below button to sign in": "Si prega di cliccare sul pulsante sottostante per accedere",
     "Please confirm your password!": "Si prega di confermare la password!",
     "Please input the correct ID card number!": "Si prega di inserire il numero di carta d'identità corretto!",
@@ -829,7 +829,7 @@
     "Please input your real name!": "Si prega di inserire il proprio nome reale!",
     "Please select your country code!": "Si prega di selezionare il codice del paese!",
     "Please select your country/region!": "Si prega di selezionare il paese/regione!",
-    "Terms of Use": "i Termini d'uso e Cookie Policy",
+    "Terms of Use": "i Termini d'uso",
     "Terms of Use - Tooltip": "Termini d'uso che gli utenti devono leggere e accettare durante la registrazione",
     "The input is not invoice Tax ID!": "L'input non è un codice fiscale per la fattura!",
     "The input is not invoice title!": "L'input non è un titolo per la fattura!",

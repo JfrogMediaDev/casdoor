@@ -57,8 +57,21 @@ export const tailFormItemLayout = {
       offset: 0,
     },
     sm: {
-      span: 16,
-      offset: 8,
+      span: 24,
+      offset: 5,
+    },
+  },
+};
+
+export const agreementFormItemLayout = {
+  wrapperCol: {
+    xs: {
+      span: 24,
+      offset: 0,
+    },
+    sm: {
+      span: 20,
+      offset: 9,
     },
   },
 };
@@ -543,7 +556,7 @@ class SignupPage extends React.Component {
         </Form.Item>
       );
     } else if (signupItem.name === "Agreement") {
-      return AgreementModal.renderAgreementFormItem(application, required, tailFormItemLayout, this);
+      return AgreementModal.renderAgreementFormItem(application, required, agreementFormItemLayout, this);
     } else if (signupItem.name.startsWith("Text ")) {
       return (
         <div dangerouslySetInnerHTML={{__html: signupItem.label}} />
@@ -573,7 +586,7 @@ class SignupPage extends React.Component {
     return (
       <Form
         {...formItemLayout}
-        labelAlign="left"
+        // labelAlign="left"
         ref={this.form}
         name="signup"
         onFinish={(values) => this.onFinish(values)}
@@ -621,20 +634,24 @@ class SignupPage extends React.Component {
           application.signupItems?.map(signupItem => this.renderFormItem(application, signupItem))
         }
         <Form.Item {...tailFormItemLayout}>
-          <Button type="primary" htmlType="submit">
-            {i18next.t("account:Sign Up")}
-          </Button>
-            &nbsp;&nbsp;{i18next.t("signup:Have account?")}&nbsp;
-          <a onClick={() => {
-            const linkInStorage = sessionStorage.getItem("signinUrl");
-            if (linkInStorage !== null && linkInStorage !== "") {
-              Setting.goToLink(linkInStorage);
-            } else {
-              Setting.redirectToLoginPage(application, this.props.history);
-            }
-          }}>
-            {i18next.t("signup:sign in now")}
-          </a>
+          <div>
+            <Button type="primary" htmlType="submit">
+              {i18next.t("account:Sign Up")}
+            </Button>
+          </div>
+          <div style={{marginTop: "0.5rem"}}>
+          &nbsp;&nbsp;{i18next.t("signup:Have account?")}&nbsp;
+            <a onClick={() => {
+              const linkInStorage = sessionStorage.getItem("signinUrl");
+              if (linkInStorage !== null && linkInStorage !== "") {
+                Setting.goToLink(linkInStorage);
+              } else {
+                Setting.redirectToLoginPage(application, this.props.history);
+              }
+            }}>
+              {i18next.t("signup:sign in now")}
+            </a>
+          </div>
         </Form.Item>
       </Form>
     );

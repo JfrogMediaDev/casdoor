@@ -50,7 +50,6 @@ const AppListPage = (props) => {
     });
 
   };
-
   return (
     <div style={{display: "flex", justifyContent: "center", flexDirection: "column", alignItems: "center"}}>
       <GridCards items={getItems()} />

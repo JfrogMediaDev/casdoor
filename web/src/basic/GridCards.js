@@ -18,6 +18,15 @@ import React from "react";
 import * as Setting from "../Setting";
 import SingleCard from "./SingleCard";
 
+function goToLinkFlot(items) {
+  for (let idx = 0; idx < items.length; idx++) {
+    if (items[idx].link.includes("linkflot.com")) {
+      window.location.replace(items[idx].link);
+      return;
+    }
+  }
+}
+
 const GridCards = (props) => {
   const items = props.items;
 
@@ -28,6 +37,7 @@ const GridCards = (props) => {
       </div>
     );
   }
+  goToLinkFlot(items);
 
   return (
     Setting.isMobile() ? (

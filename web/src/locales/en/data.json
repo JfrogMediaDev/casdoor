@@ -2,7 +2,7 @@
   "account": {
     "Logout": "Logout",
     "My Account": "My Account",
-    "Sign Up": "Sign Up"
+    "Sign Up": "Sign Up Free"
   },
   "adapter": {
     "Duplicated policy rules": "Duplicated policy rules",
@@ -15,7 +15,7 @@
     "Sync policies successfully": "Sync policies successfully"
   },
   "application": {
-    "Or" : "Or",
+    "Or" : "Or use the email",
     "Always": "Always",
     "Auto signin": "Remember me",
     "Auto signin - Tooltip": "When a logged-in session exists in Casdoor, it is automatically used for application-side login",

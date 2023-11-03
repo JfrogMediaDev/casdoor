@@ -197,7 +197,8 @@ export const DividerComponent = (text, contStyle, hStyle, sStyle) => {
     alignItems: "center",
     justifyContent: "center",
     width: "20rem",
-    marginBottom: "1.2rem",
+    marginBottom: "2.5rem",
+    marginTop: "1.5rem",
   };
   if (contStyle !== undefined) {
     containerStyle = contStyle;

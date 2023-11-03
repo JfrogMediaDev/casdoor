@@ -25,7 +25,6 @@ import {Helmet} from "react-helmet";
 import * as Conf from "./Conf";
 import * as phoneNumber from "libphonenumber-js";
 import moment from "moment";
-
 const {Option} = Select;
 
 export const ServerUrl = "";
@@ -1073,16 +1072,19 @@ export function renderLogo(application) {
   if (application === null) {
     return null;
   }
-
+  let style = {marginBottom: "3rem"};
+  if (!isMobile()) {
+    style = {marginBottom: "3rem", marginLeft: "4rem"};
+  }
   if (application.homepageUrl !== "") {
     return (
-      <a target="_blank" rel="noreferrer" href={application.homepageUrl}>
-        <img className="panel-logo" width={250} src={application.logo} alt={application.displayName} />
+      <a target="_blank" rel="noreferrer" href={application.homepageUrl} >
+        <img className="panel-logo" width={250} src={application.logo} alt={application.displayName} style={style} />
       </a>
     );
   } else {
     return (
-      <img className="panel-logo" width={250} src={application.logo} alt={application.displayName} />
+      <img className="panel-logo" width={250} src={application.logo} alt={application.displayName} style={style} />
     );
   }
 }
