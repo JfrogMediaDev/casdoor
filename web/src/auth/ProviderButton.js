@@ -1,3 +1,4 @@
+/* eslint-disable unused-imports/no-unused-vars */
 // Copyright 2021 The Casdoor Authors. All Rights Reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -43,7 +44,8 @@ import DouyinLoginButton from "./DouyinLoginButton";
 import LoginButton from "./LoginButton";
 import * as AuthBackend from "./AuthBackend";
 import {getEvent} from "./Util";
-import {Modal} from "antd";
+// eslint-disable-next-line unused-imports/no-unused-imports
+import {Col, Modal, Row} from "antd";
 
 function getSigninButton(provider) {
   const text = i18next.t("login:Sign in with {type}").replace("{type}", provider.displayName !== "" ? provider.displayName : provider.type);
@@ -100,7 +102,13 @@ function getSigninButton(provider) {
   }
 }
 
-// eslint-disable-next-line unused-imports/no-unused-vars
+function getTextForProviderButton(provider, location) {
+  // eslint-disable-next-line no-console
+  const searchPattern = location.pathname.includes("signup") ? "login:Sign up with {type}" : "login:Sign in with {type}";
+  const text = i18next.t(searchPattern).replace("{type}", provider.displayName !== "" ? provider.displayName : provider.type);
+  return text;
+}
+
 function getSignupButton(provider) {
   const text = i18next.t("login:Sign up with {type}").replace("{type}", provider.displayName !== "" ? provider.displayName : provider.type);
   if (provider.type === "GitHub") {
@@ -183,7 +191,52 @@ export function goToWeb3Url(application, provider, method) {
   }
 }
 
-export function renderProviderLogo(provider, application, width, margin, size, location) {
+export const DividerComponent = (text, contStyle, hStyle, sStyle) => {
+  let containerStyle = {
+    display: "inline-flex",
+    alignItems: "center",
+    justifyContent: "center",
+    width: "20rem",
+    marginBottom: "1.2rem",
+  };
+  if (contStyle !== undefined) {
+    containerStyle = contStyle;
+  }
+
+  let hrStyle = {
+    width: "20rem",
+    height: "1px",
+    marginLeft: "3rem",
+    marginRight: "0.1rem",
+    backgroundColor: "#878787", // Replace with your desired background color
+    border: "0",
+  };
+  if (hStyle !== undefined) {
+    hrStyle = hStyle;
+  }
+
+  let spanStyle = {
+    position: "absolute",
+    padding: "1rem", // Adjust as needed
+    fontWeight: "bold",
+    color: "#111827", // Replace with your desired text color
+    transform: "translateX(-50%)",
+    background: "white",
+    left: "55%",
+  };
+  if (sStyle !== undefined) {
+    spanStyle = sStyle;
+  }
+
+  return (
+    <div style={containerStyle}>
+      <hr style={hrStyle}></hr>
+      <span style={spanStyle}>{text}</span>
+    </div>
+  );
+};
+
+export function renderProviderLogo(provider, application, width, margin, size, location, styles) {
   if (size === "small") {
     if (provider.category === "OAuth") {
       if (provider.type === "WeChat" && provider.clientId2 !== "" && provider.clientSecret2 !== "" && provider.content !== "" && provider.disableSsl === true && !navigator.userAgent.includes("MicroMessenger")) {
@@ -207,11 +260,87 @@ export function renderProviderLogo(provider, application, width, margin, size, l
           </a>
         );
       } else {
+        const text = getTextForProviderButton(provider, location);
+        let buttonStyle = {
+          boxSizing: "border-box",
+          fontFamily: "inherit",
+          padding: "0px",
+          display: "block",
+          color: "inherit",
+          textAlign: "inherit",
+        };
+        let divContainerStyle = {
+          marginBottom: "1.2rem", marginLeft: "3rem", display: "flex", alignItems: "center", justifyContent: "center",
+        };
+        let buttonWrapperStyle = {
+          boxSizing: "border-box",
+          position: "relative",
+          borderRadius: "50px",
+          backgroundColor: "#fff",
+          border: "1px solid #b1b3b6",
+          borderWidth: "1px",
+          borderColor: "#b1b3b6",
+          display: "flex",
+          padding: "8px",
+          width: "20rem",
+          alignItems: "center",
+          justifyContent: "center",
+        };
+        let iconStyle = {
+          boxSizing: "border-box",
+          display: "inline-block",
+          marginRight: "8px",
+          lineHeight: "28px",
+        };
+        let textStyle = {
+          boxSizing: "border-box",
+          display: "inline",
+          marginLeft: "10px",
+          lineHeight: "28px",
+          color: "rgba(0, 0, 0, 0.88)",
+        };
+        if (styles !== undefined) {
+          if (styles.buttonStyle !== undefined) {
+            buttonStyle = styles.buttonStyle;
+          }
+          if (styles.buttonWrapperStyle !== undefined) {
+            buttonWrapperStyle = styles.buttonWrapperStyle;
+          }
+          if (styles.iconStyle !== undefined) {
+            iconStyle = styles.iconStyle;
+          }
+          if (styles.textStyle !== undefined) {
+            textStyle = styles.textStyle;
+          }
+          if (styles.divContainerStyle !== undefined) {
+            divContainerStyle = styles.divContainerStyle;
+          }
+        }
         return (
-          <a key={provider.displayName} href={Provider.getAuthUrl(application, provider, "signup")}>
-            {
+          <a key={provider.displayName} href={Provider.getAuthUrl(application, provider, "signup")} >
+            <div style={divContainerStyle}>
+              <div>
+                <div
+                  style={buttonStyle}
+                >
+                  <div style={buttonWrapperStyle}>
+                    <div style={iconStyle}>
+                      <span >
+                        <span>
+                          <img width={width} height={width} src={getProviderLogoURL(provider)} alt={provider.displayName} style={{margin: margin}}></img>
+                        </span>
+                      </span>
+                      <div style={textStyle}>
+                        {text}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {/* {
               location.pathname.includes("signup") ? getSignupButton(provider) : getSigninButton(provider)
-            }
+            } */}
             {/* <img width={width} height={width} src={getProviderLogoURL(provider)} alt={provider.displayName} style={{margin: margin}} /> */}
           </a>
         );

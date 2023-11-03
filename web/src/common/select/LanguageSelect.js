@@ -58,6 +58,8 @@ class LanguageSelect extends React.Component {
       this.setState({selected: e.key, icon: Setting.Countries.filter((country) => country.key === e.key)[0].country});
     };
     if (this.state.selected === "") {
+      // eslint-disable-next-line no-console
+      Setting.setLanguage(languageItems[0].key);
       this.setState({selected: languageItems[0].key, icon: Setting.Countries.filter((country) => country.key === languageItems[0].key)[0].country});
     }
     return (

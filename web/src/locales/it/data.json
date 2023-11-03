@@ -15,6 +15,7 @@
       "Sync policies successfully": "Sincronizzazione delle politiche riuscita"
   },
   "application": {
+    "Or" : "Oppure",
     "Always": "Sempre",
     "Auto signin": "Ricordami",
     "Auto signin - Tooltip": "Quando esiste una sessione con accesso in Casdoor, essa viene utilizzata automaticamente per l'accesso lato applicazione",
@@ -75,7 +76,7 @@
     "Please select an HTML file": "Si prega di selezionare un file HTML",
     "Prompt page URL copied to clipboard successfully, please paste it into the incognito window or another browser": "URL della pagina di richiesta copiato negli appunti con successo, incollalo nella finestra in incognito o in un altro browser",
     "Random": "Casuale",
-    "Real name": "Nome reale",
+    "Real name": "Nome e Cognome",
     "Redirect URL": "URL di reindirizzamento",
     "Redirect URL (Assertion Consumer Service POST Binding URL) - Tooltip": "URL di reindirizzamento (URL di reindirizzamento del servizio di consumazione delle asserzioni POST)",
     "Redirect URLs": "URL di reindirizzamento",
@@ -289,7 +290,7 @@
     "Provider - Tooltip": "Provider di pagamento da configurare, inclusi PayPal, Alipay, WeChat Pay, ecc.",
     "Providers": "Provider",
     "Providers - Tooltip": "Provider da configurare, inclusi accesso di terze parti, archiviazione di oggetti, codice di verifica, ecc.",
-    "Real name": "Nome reale",
+    "Real name": "Nome e Cognome",
     "Records": "Registrazioni",
     "Resources": "Risorse",
     "Role": "Ruolo",
@@ -397,7 +398,7 @@
     "unsynced": "non sincronizzato"
   },
   "login": {
-    "Auto sign in": "Accesso automatico",
+    "Auto sign in": "Ricordami",
     "Continue with": "Continua con",
     "Email or phone": "Email o numero di telefono",
     "Failed to obtain MetaMask authorization": "Impossibile ottenere l'autorizzazione MetaMask",
@@ -427,7 +428,7 @@
     "Verification code": "Codice di verifica",
     "WebAuthn": "WebAuthn",
     "sign up now": "Registrati ora",
-    "username, Email or phone": "Email o username"
+    "username, Email or phone": "Email"
   },
   "mfa": {
     "Each time you sign in to your Account, you'll need your password and an authentication code": "Ogni volta che effettui l'accesso al tuo Account, avrai bisogno della tua password e di un codice di autenticazione",

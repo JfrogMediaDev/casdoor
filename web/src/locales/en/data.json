@@ -15,8 +15,9 @@
     "Sync policies successfully": "Sync policies successfully"
   },
   "application": {
+    "Or" : "Or",
     "Always": "Always",
-    "Auto signin": "Auto signin",
+    "Auto signin": "Remember me",
     "Auto signin - Tooltip": "When a logged-in session exists in Casdoor, it is automatically used for application-side login",
     "Background URL": "Background URL",
     "Background URL - Tooltip": "URL of the background image used in the login page",
@@ -75,7 +76,7 @@
     "Please select a HTML file": "Please select a HTML file",
     "Prompt page URL copied to clipboard successfully, please paste it into the incognito window or another browser": "Prompt page URL copied to clipboard successfully, please paste it into the incognito window or another browser",
     "Random": "Random",
-    "Real name": "Real name",
+    "Real name": "First/Last Name",
     "Redirect URL": "Redirect URL",
     "Redirect URL (Assertion Consumer Service POST Binding URL) - Tooltip": "Redirect URL (Assertion Consumer Service POST Binding URL)",
     "Redirect URLs": "Redirect URLs",
@@ -289,7 +290,7 @@
     "Provider - Tooltip": "Payment providers to be configured, including PayPal, Alipay, WeChat Pay, etc.",
     "Providers": "Providers",
     "Providers - Tooltip": "Providers to be configured, including 3rd-party login, object storage, verification code, etc.",
-    "Real name": "Real name",
+    "Real name": "First/Last Name",
     "Records": "Records",
     "Resources": "Resources",
     "Role": "Role",
@@ -427,7 +428,7 @@
     "Verification code": "Verification code",
     "WebAuthn": "WebAuthn",
     "sign up now": "sign up now",
-    "username, Email or phone": "username, Email or phone"
+    "username, Email or phone": "Email"
   },
   "mfa": {
     "Each time you sign in to your Account, you'll need your password and a authentication code": "Each time you sign in to your Account, you'll need your password and a authentication code",

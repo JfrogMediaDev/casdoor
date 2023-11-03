@@ -45,3 +45,25 @@ code {
 .ant-list-sm .ant-list-item {
   padding: 2px !important;
 }
+
+.google-button {
+  display: inline-flex;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #fff; /* White background */
+  border-radius: 50px; /* Rounded shape */
+  border-color: #b1b3b6 !important; /* Custom color */
+  text-decoration: none;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.google-icon {
+  margin-right: 10px;
+  width: 20px;
+}
+
+.google-button:hover {
+  background-color: #f1f1f1; /* Hover background color */
+}

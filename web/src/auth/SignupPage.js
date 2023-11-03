@@ -283,6 +283,7 @@ class SignupPage extends React.Component {
               whitespace: true,
             },
           ]}
+          style={{marginRight: "0.1rem"}}
         >
           <Input placeholder={signupItem.placeholder} />
         </Form.Item>
@@ -554,6 +555,7 @@ class SignupPage extends React.Component {
         </Result>
       );
     }
+    const text = i18next.t("application:Or");
     return (
       <Form
         {...formItemLayout}
@@ -594,9 +596,12 @@ class SignupPage extends React.Component {
         </Form.Item>
         {
           application.providers.filter(providerItem => this.isProviderVisible(providerItem)).map(providerItem => {
-            return ProviderButton.renderProviderLogo(providerItem.provider, application, 40, 5, "small", this.props.location);
+            // eslint-disable-next-line no-console
+            console.log(providerItem);
+            return ProviderButton.renderProviderLogo(providerItem.provider, application, 30, 5, "small", this.props.location);
           })
         }
+        {ProviderButton.DividerComponent(text)}
         {
           application.signupItems?.map(signupItem => this.renderFormItem(application, signupItem))
         }

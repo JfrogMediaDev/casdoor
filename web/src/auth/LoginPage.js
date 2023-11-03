@@ -473,6 +473,30 @@ class LoginPage extends React.Component {
       } else if (Setting.getLanguage() === "ru") {
         loginWidth += 10;
       }
+      const text = i18next.t("application:Or");
+      const hrStyle = {
+        width: "20rem",
+        height: "1px",
+        marginLeft: "0.1rem",
+        marginRight: "0.1rem",
+        backgroundColor: "#878787", // Replace with your desired background color
+        border: "0",
+      };
+      const spanStyle = {
+        position: "absolute",
+        padding: "1rem", // Adjust as needed
+        fontWeight: "bold",
+        color: "#111827", // Replace with your desired text color
+        transform: "translateX(-50%)",
+        background: "white",
+        left: "50%",
+      };
+
+      const styles = {
+        divContainerStyle: {
+          marginBottom: "1.2rem", marginLeft: "0.1rem", display: "flex", alignItems: "center", justifyContent: "center",
+        },
+      };
 
       return (
         <Form
@@ -492,6 +516,19 @@ class LoginPage extends React.Component {
           size="large"
           ref={this.form}
         >
+          <Form.Item>
+            {
+              application.providers.filter(providerItem => this.isProviderVisible(providerItem)).map(providerItem => {
+                return ProviderButton.renderProviderLogo(providerItem.provider, application, 30, 5, "small", this.props.location, styles);
+              })
+            }
+            {
+              ProviderButton.DividerComponent(text, undefined, hrStyle, spanStyle)
+            }
+            {
+              this.renderOtherFormProvider(application)
+            }
+          </Form.Item>
           <Form.Item
             hidden={true}
             name="application"
@@ -588,16 +625,6 @@ class LoginPage extends React.Component {
             }
             {
               this.renderFooter(application)
-            }
-          </Form.Item>
-          <Form.Item>
-            {
-              application.providers.filter(providerItem => this.isProviderVisible(providerItem)).map(providerItem => {
-                return ProviderButton.renderProviderLogo(providerItem.provider, application, 30, 5, "small", this.props.location);
-              })
-            }
-            {
-              this.renderOtherFormProvider(application)
             }
           </Form.Item>
         </Form>
