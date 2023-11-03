@@ -523,7 +523,7 @@ class LoginPage extends React.Component {
               })
             }
             {
-              ProviderButton.DividerComponent(text, undefined, hrStyle, spanStyle)
+              application.providers.filter(prov => this.isProviderVisible(prov)).length > 0 ? ProviderButton.DividerComponent(text, undefined, hrStyle, spanStyle) : null
             }
             {
               this.renderOtherFormProvider(application)

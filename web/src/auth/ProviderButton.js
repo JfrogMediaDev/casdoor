@@ -281,7 +281,7 @@ export function renderProviderLogo(provider, application, width, margin, size, l
           borderWidth: "1px",
           borderColor: "#b1b3b6",
           display: "flex",
-          padding: "8px",
+          padding: "4px",
           width: "20rem",
           alignItems: "center",
           justifyContent: "center",

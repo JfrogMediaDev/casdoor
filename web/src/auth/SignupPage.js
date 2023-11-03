@@ -219,6 +219,7 @@ class SignupPage extends React.Component {
     if (!signupItem.visible) {
       return null;
     }
+    const generalStyle = {marginRight: "1.3rem"};
 
     const required = signupItem.required;
 
@@ -226,6 +227,7 @@ class SignupPage extends React.Component {
       return (
         <Form.Item
           name="username"
+          style={generalStyle}
           label={signupItem.label ? signupItem.label : i18next.t("signup:Username")}
           rules={[
             {
@@ -244,6 +246,7 @@ class SignupPage extends React.Component {
           <React.Fragment>
             <Form.Item
               name="firstName"
+              style={generalStyle}
               label={signupItem.label ? signupItem.label : i18next.t("general:First name")}
               rules={[
                 {
@@ -257,6 +260,7 @@ class SignupPage extends React.Component {
             </Form.Item>
             <Form.Item
               name="lastName"
+              style={generalStyle}
               label={signupItem.label ? signupItem.label : i18next.t("general:Last name")}
               rules={[
                 {
@@ -275,6 +279,7 @@ class SignupPage extends React.Component {
       return (
         <Form.Item
           name="name"
+          style={generalStyle}
           label={(signupItem.label ? signupItem.label : (signupItem.rule === "Real name" || signupItem.rule === "First, last") ? i18next.t("general:Real name") : i18next.t("general:Display name"))}
           rules={[
             {
@@ -283,7 +288,6 @@ class SignupPage extends React.Component {
               whitespace: true,
             },
           ]}
-          style={{marginRight: "0.1rem"}}
         >
           <Input placeholder={signupItem.placeholder} />
         </Form.Item>
@@ -292,6 +296,7 @@ class SignupPage extends React.Component {
       return (
         <Form.Item
           name="affiliation"
+          style={generalStyle}
           label={signupItem.label ? signupItem.label : i18next.t("user:Affiliation")}
           rules={[
             {
@@ -308,6 +313,7 @@ class SignupPage extends React.Component {
       return (
         <Form.Item
           name="idCard"
+          style={generalStyle}
           label={signupItem.label ? signupItem.label : i18next.t("user:ID card")}
           rules={[
             {
@@ -329,6 +335,7 @@ class SignupPage extends React.Component {
       return (
         <Form.Item
           name="country_region"
+          style={generalStyle}
           label={signupItem.label ? signupItem.label : i18next.t("user:Country/Region")}
           rules={[
             {
@@ -345,6 +352,7 @@ class SignupPage extends React.Component {
         <React.Fragment>
           <Form.Item
             name="email"
+            style={generalStyle}
             label={signupItem.label ? signupItem.label : i18next.t("general:Email")}
             rules={[
               {
@@ -370,6 +378,7 @@ class SignupPage extends React.Component {
             signupItem.rule !== "No verification" &&
             <Form.Item
               name="emailCode"
+              style={generalStyle}
               label={signupItem.label ? signupItem.label : i18next.t("code:Email code")}
               rules={[{
                 required: required,
@@ -444,6 +453,7 @@ class SignupPage extends React.Component {
             signupItem.rule !== "No verification" &&
             <Form.Item
               name="phoneCode"
+              style={generalStyle}
               label={signupItem.label ? signupItem.label : i18next.t("code:Phone code")}
               rules={[
                 {
@@ -467,6 +477,7 @@ class SignupPage extends React.Component {
       return (
         <Form.Item
           name="password"
+          style={generalStyle}
           label={signupItem.label ? signupItem.label : i18next.t("general:Password")}
           rules={[
             {
@@ -491,6 +502,7 @@ class SignupPage extends React.Component {
       return (
         <Form.Item
           name="confirm"
+          style={generalStyle}
           label={signupItem.label ? signupItem.label : i18next.t("signup:Confirm")}
           dependencies={["password"]}
           hasFeedback
@@ -517,6 +529,7 @@ class SignupPage extends React.Component {
       return (
         <Form.Item
           name="invitationCode"
+          style={generalStyle}
           label={signupItem.label ? signupItem.label : i18next.t("application:Invitation code")}
           rules={[
             {
@@ -601,7 +614,9 @@ class SignupPage extends React.Component {
             return ProviderButton.renderProviderLogo(providerItem.provider, application, 30, 5, "small", this.props.location);
           })
         }
-        {ProviderButton.DividerComponent(text)}
+        {
+          application.providers.filter(providerItem => this.isProviderVisible(providerItem)).length > 0 ? ProviderButton.DividerComponent(text) : null
+        }
         {
           application.signupItems?.map(signupItem => this.renderFormItem(application, signupItem))
         }
