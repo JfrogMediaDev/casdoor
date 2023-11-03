@@ -393,8 +393,6 @@ export function getAuthUrl(application, provider, method) {
   } else if (provider.type === "Apple") {
     redirectUri = `${window.location.origin}/api/callback`;
   }
-  // eslint-disable-next-line no-console
-  console.log(provider);
 
   if (provider.type === "Google" || provider.type === "GitHub" || provider.type === "QQ"
     || provider.type === "Weibo" || provider.type === "Gitee" || provider.type === "LinkedIn" || provider.type === "GitLab" || provider.type === "AzureAD"

@@ -152,7 +152,11 @@ class AuthCallback extends React.Component {
     }
     // OAuth
     const oAuthParams = Util.getOAuthGetParameters(innerParams);
+    // eslint-disable-next-line no-console
+    console.log(oAuthParams?.redirectUri?.includes("?"));
     const concatChar = oAuthParams?.redirectUri?.includes("?") ? "&" : "?";
+    // eslint-disable-next-line no-console
+    console.log(concatChar);
     AuthBackend.login(body, oAuthParams)
       .then((res) => {
         if (res.status === "ok") {
@@ -165,7 +169,15 @@ class AuthCallback extends React.Component {
             Setting.goToLink(link);
           } else if (responseType === "code") {
             const code = res.data;
-            Setting.goToLink(`${oAuthParams.redirectUri}${concatChar}code=${code}&state=${oAuthParams.state}`);
+            const url = `${oAuthParams.redirectUri}${concatChar}code=${code}&state=${oAuthParams.state}`;
+            if (url.includes("app.linkflot.com") || url.includes("demo.linkflot.com")) {
+              if (url.includes("http://")) {
+                url.replace("http://", "https://");
+              }
+            }
+            // eslint-disable-next-line no-console
+            console.log(url);
+            Setting.goToLink(url);
             // Setting.showMessage("success", `Authorization code: ${res.data}`);
           } else if (responseType === "token" || responseType === "id_token") {
             const token = res.data;

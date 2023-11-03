@@ -20,7 +20,6 @@ import "../../App.less";
 
 function flagIcon(country, alt) {
   // eslint-disable-next-line no-console
-  console.log(country, "GOT THIS");
   return (
     <img width={24} alt={alt} src={`${Setting.StaticBaseUrl}/flag-icons/${country.toUpperCase()}.svg`} />
   );

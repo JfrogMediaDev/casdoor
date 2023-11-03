@@ -1074,7 +1074,7 @@ export function renderLogo(application) {
   }
   let style = {marginBottom: "3rem"};
   if (!isMobile()) {
-    style = {marginBottom: "3rem", marginLeft: "4rem"};
+    style = {marginBottom: "3rem", marginLeft: "1.0rem"};
   }
   if (application.homepageUrl !== "") {
     return (
