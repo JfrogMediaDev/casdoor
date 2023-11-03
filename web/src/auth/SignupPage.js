@@ -33,18 +33,19 @@ import * as PasswordChecker from "../common/PasswordChecker";
 const formItemLayout = {
   labelCol: {
     xs: {
-      span: 24,
+      span: 12,
     },
     sm: {
-      span: 8,
+      span: 6,
+      offset: 2,
     },
   },
   wrapperCol: {
     xs: {
-      span: 24,
+      span: 56,
     },
     sm: {
-      span: 16,
+      span: 36,
     },
   },
 };
@@ -572,6 +573,7 @@ class SignupPage extends React.Component {
     return (
       <Form
         {...formItemLayout}
+        labelAlign="left"
         ref={this.form}
         name="signup"
         onFinish={(values) => this.onFinish(values)}
@@ -609,8 +611,6 @@ class SignupPage extends React.Component {
         </Form.Item>
         {
           application.providers.filter(providerItem => this.isProviderVisible(providerItem)).map(providerItem => {
-            // eslint-disable-next-line no-console
-            console.log(providerItem);
             return ProviderButton.renderProviderLogo(providerItem.provider, application, 30, 5, "small", this.props.location);
           })
         }
