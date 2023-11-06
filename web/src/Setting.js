@@ -1110,8 +1110,15 @@ export function renderLoginLink(application, text) {
   return renderLink(url, text, null);
 }
 
-export function redirectToLoginPage(application, history) {
-  const loginLink = getLoginLink(application);
+export function redirectToLoginPage(application, history, additional) {
+  let loginLink = getLoginLink(application);
+  // eslint-disable-next-line no-console
+  console.log("LOGIN LINK IS: ", loginLink);
+  if (additional !== undefined) {
+    if (additional.username !== undefined && additional.password !== undefined) {
+      loginLink = `${loginLink}&e=${additional.username}&p=${additional.password}`;
+    }
+  }
   if (loginLink.startsWith("http://") || loginLink.startsWith("https://")) {
     goToLink(loginLink);
   } else {

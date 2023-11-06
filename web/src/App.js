@@ -74,6 +74,7 @@ import AccountPage from "./account/AccountPage";
 import AppListPage from "./basic/AppListPage";
 import CustomGithubCorner from "./common/CustomGithubCorner";
 import * as Conf from "./Conf";
+import * as ApplicationBackend from "./backend/ApplicationBackend";
 
 import * as Auth from "./auth/Auth";
 import EntryPage from "./EntryPage";
@@ -488,7 +489,6 @@ class App extends Component {
       return component;
     }
   }
-
   renderRouter() {
     return (
       <Switch>
@@ -579,6 +579,47 @@ class App extends Component {
         }
       }
     };
+    const renderRedirectToLinkFlot = () => {
+      if (this.state.account !== null && this.state.account !== undefined) {
+        ApplicationBackend.getApplicationsByOrganization("admin", this.state.account.owner)
+          .then((res) => {
+            if (res.data === undefined || res.data === null || res.length === 0) {
+              return;
+            }
+            const applications = res.data;
+            function goToLinkFlot(items) {
+              for (let idx = 0; idx < items.length; idx++) {
+                if (items[idx].link.includes("linkflot.com")) {
+                  window.location.replace(items[idx].link);
+                  return;
+                }
+              }
+            }
+            const getItems = () => {
+              if (applications === null) {
+                return null;
+              }
+              return applications.map(application => {
+                let homepageUrl = application.homepageUrl;
+                if (homepageUrl === "<custom-url>") {
+                  homepageUrl = this.state.account.homepage;
+                }
+                return {
+                  link: homepageUrl,
+                  name: application.displayName,
+                  description: application.description,
+                  logo: application.logo,
+                  createdTime: "",
+                };
+              });
+            };
+            const items = getItems();
+            goToLinkFlot(items);
+          });
+      }
+      return;
+    };
+    renderRedirectToLinkFlot();
     const menuStyleRight = Setting.isAdminUser(this.state.account) && !Setting.isMobile() ? "calc(180px + 260px)" : "260px";
     return (
       <Layout id="parent-area">
@@ -739,7 +780,6 @@ class App extends Component {
       } />
     );
   }
-
   render() {
     return (
       <React.Fragment>

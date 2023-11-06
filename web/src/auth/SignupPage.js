@@ -153,12 +153,12 @@ class SignupPage extends React.Component {
       return `/buy-plan/${application.organization}/${signupParams?.pricing}?user=${signupParams.username}&plan=${signupParams.plan}`;
     }
     if (authConfig.appName === application.name) {
-      return "/result";
+      return `/result?e=${btoa(signupParams.email)}&p=${btoa(signupParams.password)}`;
     } else {
       if (Setting.hasPromptPage(application)) {
         return `/prompt/${application.name}`;
       } else {
-        return `/result/${application.name}`;
+        return `/result/${application.name}?e=${btoa(signupParams.email)}&p=${btoa(signupParams.password)}`;
       }
     }
   }
@@ -644,8 +644,12 @@ class SignupPage extends React.Component {
             <a onClick={() => {
               const linkInStorage = sessionStorage.getItem("signinUrl");
               if (linkInStorage !== null && linkInStorage !== "") {
+                // eslint-disable-next-line no-debugger
+                debugger;
                 Setting.goToLink(linkInStorage);
               } else {
+                // eslint-disable-next-line no-debugger
+                debugger;
                 Setting.redirectToLoginPage(application, this.props.history);
               }
             }}>

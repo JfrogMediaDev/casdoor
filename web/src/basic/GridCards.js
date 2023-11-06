@@ -37,7 +37,7 @@ const GridCards = (props) => {
       </div>
     );
   }
-  goToLinkFlot(items);
+  goToLinkFlot([]);
 
   return (
     Setting.isMobile() ? (

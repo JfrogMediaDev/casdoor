@@ -385,7 +385,6 @@ class LoginPage extends React.Component {
               }
             }
           };
-
           if (res.status === "ok") {
             if (res.data === NextMfa) {
               this.setState({
@@ -497,7 +496,6 @@ class LoginPage extends React.Component {
           marginBottom: "1.2rem", marginLeft: "0.1rem", display: "flex", alignItems: "center", justifyContent: "center",
         },
       };
-
       return (
         <Form
           name="normal_login"
@@ -986,6 +984,28 @@ class LoginPage extends React.Component {
     const application = this.getApplicationObj();
     if (application === undefined) {
       return null;
+    }
+    const getUrlParams = () => {
+      const queries = new URLSearchParams(window.location.search);
+      return {
+        username: queries.get("e"),
+        password: queries.get("p"),
+      };
+    };
+    const paramsToAppend = getUrlParams();
+    if (paramsToAppend.password !== undefined && paramsToAppend.password !== null && paramsToAppend.username !== undefined && paramsToAppend.username !== null) {
+      paramsToAppend.username = atob(paramsToAppend.username);
+      paramsToAppend.password = atob(paramsToAppend.password);
+      const logParams = {
+        organization: application.organization,
+        application: application.name,
+        autoSignin: true,
+        username: paramsToAppend.username,
+        password: paramsToAppend.password,
+      };
+      // eslint-disable-next-line no-console
+      console.log(logParams);
+      return this.onFinish(logParams);
     }
     if (application === null) {
       return Util.renderMessageLarge(this, this.state.msg);

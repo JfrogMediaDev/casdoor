@@ -62,7 +62,6 @@ class ResultPage extends React.Component {
 
   render() {
     const application = this.state.application;
-
     if (application === null) {
       return (
         <div style={{display: "flex", justifyContent: "center", alignItems: "center"}}>
@@ -70,6 +69,14 @@ class ResultPage extends React.Component {
         </div>
       );
     }
+    const getUrlParams = () => {
+      const queries = new URLSearchParams(window.location.search);
+      return {
+        username: queries.get("e"),
+        password: queries.get("p"),
+      };
+    };
+    const paramsToAppend = getUrlParams();
 
     return (
       <div style={{display: "flex", flex: "1", justifyContent: "center"}}>
@@ -92,9 +99,9 @@ class ResultPage extends React.Component {
                 <Button type="primary" key="login" onClick={() => {
                   const linkInStorage = sessionStorage.getItem("signinUrl");
                   if (linkInStorage !== null && linkInStorage !== "") {
-                    Setting.goToLink(linkInStorage);
+                    Setting.goToLink(`${linkInStorage}&e=${paramsToAppend.username}&p=${paramsToAppend.password}`);
                   } else {
-                    Setting.redirectToLoginPage(application, this.props.history);
+                    Setting.redirectToLoginPage(application, this.props.history, paramsToAppend);
                   }
                 }}>
                   {i18next.t("login:Sign In")}
