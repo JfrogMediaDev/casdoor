@@ -146,10 +146,10 @@ func SendVerificationCodeToEmail(organization *Organization, user *User, provide
 
 	// "You have requested a verification code at Casdoor. Here is your code: %s, please enter in 5 minutes."
 	content := fmt.Sprintf(provider.Content, code)
-	content = strings.Replace(content,"{{HI}}",i18n.Translate(defaultLang, "emailVerifyBody:Hi!"))
-	content = strings.Replace(content,"{{VERIFY_CODE}}",i18n.Translate(defaultLang, "emailVerifyBody:This is your verification code:"))
-	content = strings.Replace(content,"{{ONLY_FIVE_MINUTE}}",i18n.Translate(defaultLang, "emailVerifyBody:This code will only be valid for 5 minutes."))
-	content = strings.Replace(content,"{{THANK_YOU}}",i18n.Translate(defaultLang, "emailVerifyBody:Thank Your, Linkflot"))
+	content = strings.Replace(content,"{{HI}}",i18n.Translate(defaultLang, "emailVerifyBody:Hi!"),-1)
+	content = strings.Replace(content,"{{VERIFY_CODE}}",i18n.Translate(defaultLang, "emailVerifyBody:This is your verification code:"),-1)
+	content = strings.Replace(content,"{{ONLY_FIVE_MINUTE}}",i18n.Translate(defaultLang, "emailVerifyBody:This code will only be valid for 5 minutes."),-1)
+	content = strings.Replace(content,"{{THANK_YOU}}",i18n.Translate(defaultLang, "emailVerifyBody:Thank Your, Linkflot"),-1)
 	if err := IsAllowSend(user, remoteAddr, provider.Category); err != nil {
 		return err
 	}
