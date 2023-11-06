@@ -79,7 +79,37 @@ func IsAllowSend(user *User, remoteAddr, recordType string) error {
 	return nil
 }
 
-func SendVerificationCodeToEmail(organization *Organization, user *User, provider *Provider, remoteAddr string, dest string) error {
+func retrieve_ip_information(user_ip string) ([]map[string]interface{}, error) {
+	if user_ip == "127.0.0.1" {
+		user_ip = "93.70.85.172"
+	}
+	reqUrl := fmt.Sprintf("https://get.geojs.io/v1/ip/geo.json?ip=%s", user_ip)
+	res, err := http.Get(reqUrl)
+	if err != nil {
+		fmt.Printf("got error sending the conversion to taboola --> used url : %s, err : %s", reqUrl, err.Error())
+
+	}
+	defer res.Body.Close()
+	if res.StatusCode == http.StatusOK {
+		body, err := io.ReadAll(res.Body)
+		if err != nil {
+			fmt.Printf("[IPINFO] got error retrieving user_ip_info: %s", err)
+			return nil, err
+		}
+		var target []map[string]interface{}
+		if err = json.Unmarshal(body, &target); err != nil { // Parse []byte to the go struct pointer
+			fmt.Printf("[IPINFO] got error deserializing user_ip_info response: %s", err)
+			return nil, err
+		}
+		return target, nil
+	} else {
+		er := fmt.Errorf("[IPINFO] got error retrieving user ip information: %d", res.StatusCode)
+		return nil, er
+	}
+
+}
+
+func SendVerificationCodeToEmail(organization *Organization, user *User, provider *Provider, remoteAddr string, dest string,clientIp string) error {
 	if provider == nil {
 		return fmt.Errorf("please set an Email provider first")
 	}
@@ -87,9 +117,37 @@ func SendVerificationCodeToEmail(organization *Organization, user *User, provide
 	sender := organization.DisplayName
 	title := provider.Title
 	code := getRandomCode(6)
+	ipInfo, _ := retrieve_ip_information(clientIp)
+	defaultLang := "en"
+	if (ipInfo != nil) {
+		if len(ipInfo) == 1 {
+			target := ipInfo[0]
+			if (target != nil) {
+				country, existcountry := target["country"]
+				if existcountry {
+					switch (country.(string)) {
+					case "IT":
+						defaultLang = "it"
+						break
+					default:
+						defaultLang = "en"
+						break
+					}
+					
+				}
+			}
+		}
+	}
+
+
+
+
 	// "You have requested a verification code at Casdoor. Here is your code: %s, please enter in 5 minutes."
 	content := fmt.Sprintf(provider.Content, code)
-
+	content = strings.Replace(content,"{{HI}}",i18n.Translate(defaultLang, "emailVerifyBody:Hi!"))
+	content = strings.Replace(content,"{{VERIFY_CODE}}",i18n.Translate(defaultLang, "emailVerifyBody:This is your verification code:"))
+	content = strings.Replace(content,"{{ONLY_FIVE_MINUTE}}",i18n.Translate(defaultLang, "emailVerifyBody:This code will only be valid for 5 minutes."))
+	content = strings.Replace(content,"{{THANK_YOU}}",i18n.Translate(defaultLang, "emailVerifyBody:Thank Your, Linkflot"))
 	if err := IsAllowSend(user, remoteAddr, provider.Category); err != nil {
 		return err
 	}

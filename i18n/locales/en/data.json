@@ -135,6 +135,12 @@
     "You should verify your code in %d min!": "You should verify your code in %d min!",
     "the user does not exist, please sign up first": "the user does not exist, please sign up first"
   },
+  "emailVerifyBody": {
+    "Hi!" : "Hi!",
+    "This is your verification code:" : "This is your verification code:",
+    "This code will only be valid for 5 minutes." : "This code will only be valid for 5 minutes.",
+    "Thank Your, Linkflot" : "Thank You, <br />LinkFlot team"
+  },
   "webauthn": {
     "Found no credentials for this user": "Found no credentials for this user",
     "Please call WebAuthnSigninBegin first": "Please call WebAuthnSigninBegin first"

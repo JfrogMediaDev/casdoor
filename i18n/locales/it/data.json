@@ -143,6 +143,12 @@
     "You should verify your code in %d min!": "Dovresti verificare il codice tra %d minuti!",
     "The user does not exist, please sign up first": "L'utente non esiste, per favore registrati prima"
   },
+  "emailVerifyBody": {
+    "Hi!" : "Ciao!",
+    "This is your verification code:" : "Questo è il tuo codice di verifica:",
+    "This code will only be valid for 5 minutes." : "Questo codice sarà valido solo per 5 minuti.",
+    "Thank Your, Linkflot" : "Grazie, <br />LinkFlot team"
+  },
   "webauthn": {
     "Found no credentials for this user": "Nessuna credenziale trovata per questo utente",
     "Please call WebAuthnSigninBegin first": "Per favore chiama WebAuthnSigninBegin prima"
