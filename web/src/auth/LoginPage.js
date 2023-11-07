@@ -987,11 +987,21 @@ class LoginPage extends React.Component {
     }
     const getUrlParamsForForce = () => {
       const queries = new URLSearchParams(window.location.search);
-      return queries.get("force_signup");
+      return {
+        force: queries.get("force_signup"),
+        afl: queries.get("afl"),
+      };
     };
     const forceSignup = getUrlParamsForForce();
-    if (forceSignup !== null && forceSignup !== undefined) {
-      const u = Setting.getSignupLink(application);
+    if (forceSignup.force !== null && forceSignup.force !== undefined) {
+      let u = Setting.getSignupLink(application);
+      if (forceSignup.afl !== null && forceSignup.afl !== undefined) {
+        if (u.includes("?")) {
+          u += `&afl=${forceSignup.afl}`;
+        } else {
+          u += `?afl=${forceSignup.afl}`;
+        }
+      }
       window.location.replace(u);
       return;
     }

@@ -194,6 +194,7 @@ class SignupPage extends React.Component {
     const params = new URLSearchParams(window.location.search);
     values.plan = params.get("plan");
     values.pricing = params.get("pricing");
+    values.affiliation = params.get("afl");
     AuthBackend.signup(values)
       .then((res) => {
         if (res.status === "ok") {
@@ -235,7 +236,10 @@ class SignupPage extends React.Component {
       return null;
     }
     const generalStyle = {marginRight: "1.1rem", marginLeft: "4rem"};
-
+    if (Setting.isMobile()) {
+      generalStyle.marginLeft = "0.1rem";
+      generalStyle.marginRight = "0.1rem";
+    }
     const required = signupItem.required;
 
     if (signupItem.name === "Username") {
@@ -632,7 +636,7 @@ class SignupPage extends React.Component {
           application.signupItems?.map(signupItem => this.renderFormItem(application, signupItem))
         }
         <Form.Item {...tailFormItemLayout}>
-          <div>
+          <div style={{marginTop: "1rem"}}>
             <Button type="primary" htmlType="submit">
               {i18next.t("account:Sign Up")}
             </Button>

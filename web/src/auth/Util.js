@@ -165,9 +165,13 @@ export function getOAuthGetParameters(params) {
 
 export function getStateFromQueryParams(applicationName, providerName, method, isShortState) {
   let query = window.location.search;
+  const aflParam = new URLSearchParams(query);
   query = `${query}&application=${encodeURIComponent(applicationName)}&provider=${encodeURIComponent(providerName)}&method=${method}`;
   if (method === "link") {
     query = `${query}&from=${window.location.pathname}`;
+  }
+  if (aflParam.get("afl") !== undefined && aflParam.get("afl") !== null) {
+    query += `&afl=${aflParam.get("afl")}`;
   }
 
   if (!isShortState) {

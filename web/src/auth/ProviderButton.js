@@ -44,6 +44,7 @@ import DouyinLoginButton from "./DouyinLoginButton";
 import LoginButton from "./LoginButton";
 import * as AuthBackend from "./AuthBackend";
 import {getEvent} from "./Util";
+import * as Setting from "../Setting";
 // eslint-disable-next-line unused-imports/no-unused-imports
 import {Col, Modal, Row} from "antd";
 
@@ -215,7 +216,6 @@ export const DividerComponent = (text, contStyle, hStyle, sStyle) => {
   if (hStyle !== undefined) {
     hrStyle = hStyle;
   }
-
   let spanStyle = {
     position: "absolute",
     padding: "1rem", // Adjust as needed
@@ -227,6 +227,12 @@ export const DividerComponent = (text, contStyle, hStyle, sStyle) => {
   };
   if (sStyle !== undefined) {
     spanStyle = sStyle;
+  }
+  if (Setting.isMobile()) {
+    hrStyle.marginLeft = "0.1rem";
+    hrStyle.marginRight = "0.1rem";
+    spanStyle.left = "50%";
+    hrStyle.width = "19rem";
   }
 
   return (
@@ -273,6 +279,9 @@ export function renderProviderLogo(provider, application, width, margin, size, l
         let divContainerStyle = {
           marginBottom: "1.2rem", marginLeft: "3rem", display: "flex", alignItems: "center", justifyContent: "center",
         };
+        if (Setting.isMobile()) {
+          divContainerStyle.marginLeft = "0.1rem";
+        }
         let buttonWrapperStyle = {
           boxSizing: "border-box",
           position: "relative",
