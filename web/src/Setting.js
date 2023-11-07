@@ -1175,6 +1175,30 @@ export function renderSignupLink(application, text) {
   return renderLink(url, text, storeSigninUrl);
 }
 
+export function getSignupLink(application) {
+  let url;
+  if (application === null) {
+    url = null;
+  } else if (!application.enablePassword && window.location.pathname.includes("/login/oauth/authorize")) {
+    url = window.location.href.replace("/login/oauth/authorize", "/auto-signup/oauth/authorize");
+  } else if (authConfig.appName === application.name) {
+    url = "/signup";
+  } else {
+    if (application.signupUrl === "") {
+      url = `/signup/${application.name}`;
+    } else {
+      url = application.signupUrl;
+    }
+  }
+
+  const storeSigninUrl = () => {
+    const t = window.location.href.replace("&force_signup=true", "");
+    sessionStorage.setItem("signinUrl", t);
+  };
+  storeSigninUrl();
+  return url;
+}
+
 export function renderForgetLink(application, text) {
   let url;
   if (application === null) {

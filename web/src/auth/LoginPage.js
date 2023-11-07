@@ -985,6 +985,16 @@ class LoginPage extends React.Component {
     if (application === undefined) {
       return null;
     }
+    const getUrlParamsForForce = () => {
+      const queries = new URLSearchParams(window.location.search);
+      return queries.get("force_signup");
+    };
+    const forceSignup = getUrlParamsForForce();
+    if (forceSignup !== null && forceSignup !== undefined) {
+      const u = Setting.getSignupLink(application);
+      window.location.replace(u);
+      return;
+    }
     const getUrlParams = () => {
       const queries = new URLSearchParams(window.location.search);
       return {
