@@ -14,6 +14,7 @@
 
 import React from "react";
 import {Button, Form, Input, Result} from "antd";
+import {LockOutlined, UserOutlined} from "@ant-design/icons";
 import * as Setting from "../Setting";
 import * as AuthBackend from "./AuthBackend";
 import * as ProviderButton from "./ProviderButton";
@@ -233,7 +234,7 @@ class SignupPage extends React.Component {
     if (!signupItem.visible) {
       return null;
     }
-    const generalStyle = {marginRight: "1.3rem"};
+    const generalStyle = {marginRight: "1.1rem", marginLeft: "4rem"};
 
     const required = signupItem.required;
 
@@ -367,7 +368,6 @@ class SignupPage extends React.Component {
           <Form.Item
             name="email"
             style={generalStyle}
-            label={signupItem.label ? signupItem.label : i18next.t("general:Email")}
             rules={[
               {
                 required: required,
@@ -386,14 +386,13 @@ class SignupPage extends React.Component {
               },
             ]}
           >
-            <Input placeholder={signupItem.placeholder} onChange={e => this.setState({email: e.target.value})} />
+            <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder={i18next.t("general:Email")} onChange={e => this.setState({email: e.target.value})} />
           </Form.Item>
           {
             signupItem.rule !== "No verification" &&
             <Form.Item
               name="emailCode"
               style={generalStyle}
-              label={signupItem.label ? signupItem.label : i18next.t("code:Email code")}
               rules={[{
                 required: required,
                 message: i18next.t("code:Please input your verification code!"),
@@ -492,7 +491,6 @@ class SignupPage extends React.Component {
         <Form.Item
           name="password"
           style={generalStyle}
-          label={signupItem.label ? signupItem.label : i18next.t("general:Password")}
           rules={[
             {
               required: required,
@@ -509,7 +507,7 @@ class SignupPage extends React.Component {
           ]}
           hasFeedback
         >
-          <Input.Password placeholder={signupItem.placeholder} />
+          <Input.Password prefix={<LockOutlined className="site-form-item-icon" />} placeholder={i18next.t("general:Password")} />
         </Form.Item>
       );
     } else if (signupItem.name === "Confirm password") {
@@ -644,12 +642,8 @@ class SignupPage extends React.Component {
             <a onClick={() => {
               const linkInStorage = sessionStorage.getItem("signinUrl");
               if (linkInStorage !== null && linkInStorage !== "") {
-                // eslint-disable-next-line no-debugger
-                debugger;
                 Setting.goToLink(linkInStorage);
               } else {
-                // eslint-disable-next-line no-debugger
-                debugger;
                 Setting.redirectToLoginPage(application, this.props.history);
               }
             }}>
