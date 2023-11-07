@@ -1167,10 +1167,18 @@ export function renderSignupLink(application, text) {
       url = application.signupUrl;
     }
   }
-
+  const prm = new URLSearchParams(window.location.search);
   const storeSigninUrl = () => {
     sessionStorage.setItem("signinUrl", window.location.href);
   };
+  const afl = prm.get("afl");
+  if (afl !== undefined && afl !== null) {
+    if (url.includes("?")) {
+      url += `&afl=${afl}`;
+    } else {
+      url += `?afl=${afl}`;
+    }
+  }
 
   return renderLink(url, text, storeSigninUrl);
 }
