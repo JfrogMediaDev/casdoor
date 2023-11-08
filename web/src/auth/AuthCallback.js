@@ -169,10 +169,10 @@ class AuthCallback extends React.Component {
             Setting.goToLink(link);
           } else if (responseType === "code") {
             const code = res.data;
-            const url = `${oAuthParams.redirectUri}${concatChar}code=${code}&state=${oAuthParams.state}`;
+            let url = `${oAuthParams.redirectUri}${concatChar}code=${code}&state=${oAuthParams.state}`;
             if (url.includes("app.linkflot.com") || url.includes("demo.linkflot.com")) {
               if (url.includes("http://")) {
-                url.replace("http://", "https://");
+                url = url.replace("http://", "https://");
               }
             }
             // eslint-disable-next-line no-console
