@@ -58,8 +58,8 @@ export const tailFormItemLayout = {
       offset: 0,
     },
     sm: {
-      span: 24,
-      offset: 5,
+      span: 20,
+      offset: 3,
     },
   },
 };
@@ -637,7 +637,7 @@ class SignupPage extends React.Component {
         }
         <Form.Item {...tailFormItemLayout}>
           <div style={{marginTop: "1rem"}}>
-            <Button type="primary" htmlType="submit">
+            <Button type="primary" htmlType="submit" style={{width: "100%", marginLeft: "0.3rem"}}>
               {i18next.t("account:Sign Up")}
             </Button>
           </div>
