@@ -56,7 +56,7 @@ const authInfo = {
     endpoint: "https://gitee.com/oauth/authorize",
   },
   LinkedIn: {
-    scope: "r_liteprofile%20r_emailaddress",
+    scope: "openid%20profile%20email",
     endpoint: "https://www.linkedin.com/oauth/v2/authorization",
   },
   WeCom: {
