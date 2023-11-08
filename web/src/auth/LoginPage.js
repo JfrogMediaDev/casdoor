@@ -464,7 +464,7 @@ class LoginPage extends React.Component {
 
     const showForm = application.enablePassword || application.enableCodeSignin || application.enableWebAuthn;
     if (showForm) {
-      let loginWidth = 320;
+      let loginWidth = 360;
       if (Setting.getLanguage() === "fr") {
         loginWidth += 20;
       } else if (Setting.getLanguage() === "es") {
@@ -474,7 +474,7 @@ class LoginPage extends React.Component {
       }
       const text = i18next.t("application:Or");
       const hrStyle = {
-        width: "20rem",
+        width: "40rem",
         height: "1px",
         marginLeft: "0.1rem",
         marginRight: "0.1rem",

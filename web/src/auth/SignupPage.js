@@ -600,7 +600,7 @@ class SignupPage extends React.Component {
         }}
         size="large"
         layout={Setting.isMobile() ? "vertical" : "horizontal"}
-        style={{width: Setting.isMobile() ? "300px" : "400px"}}
+        style={{width: Setting.isMobile() ? "350px" : "450px"}}
       >
         <Form.Item
           name="application"

@@ -292,7 +292,7 @@ export function renderProviderLogo(provider, application, width, margin, size, l
           borderColor: "#b1b3b6",
           display: "flex",
           padding: "4px",
-          width: "20rem",
+          width: "23rem",
           alignItems: "center",
           justifyContent: "center",
         };
