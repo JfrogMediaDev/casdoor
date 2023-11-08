@@ -619,7 +619,9 @@ class App extends Component {
       }
       return;
     };
-    renderRedirectToLinkFlot();
+    if (window.location.href.includes("/apps") || window.location.origin.includes("/apps")) {
+      renderRedirectToLinkFlot();
+    }
     const menuStyleRight = Setting.isAdminUser(this.state.account) && !Setting.isMobile() ? "calc(180px + 260px)" : "260px";
     return (
       <Layout id="parent-area">
