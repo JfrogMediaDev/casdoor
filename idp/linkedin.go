@@ -260,13 +260,20 @@ type LinkedInUserInfo struct {
 }
 */
 
+// type LinkedInUserEmail struct {
+// 	Elements []struct {
+// 		Handle struct {
+// 			EmailAddress string `json:"emailAddress"`
+// 		} `json:"handle~"`
+// 		Handle1 string `json:"handle"`
+// 	} `json:"elements"`
+// }
 type LinkedInUserEmail struct {
-	Elements []struct {
-		Handle struct {
-			EmailAddress string `json:"emailAddress"`
-		} `json:"handle~"`
-		Handle1 string `json:"handle"`
-	} `json:"elements"`
+	
+	Handle struct {
+		EmailAddress string `json:"emailAddress"`
+	} `json:"handle~"`
+	Handle1 string `json:"handle"`
 }
 
 // GetUserInfo use LinkedInAccessToken gotten before return LinkedInUserInfo
@@ -301,7 +308,7 @@ func (idp *LinkedInIdProvider) GetUserInfo(token *oauth2.Token) (*UserInfo, erro
 		Id:          linkedInUserInfo.Id,
 		DisplayName: username,
 		Username:    username,
-		Email:       linkedInUserEmail.Elements[0].Handle.EmailAddress,
+		Email:       linkedInUserEmail.Handle.EmailAddress,
 		AvatarUrl:   linkedInUserInfo.ProfilePicture.DisplayImage1.Elements[0].Identifiers[0].Identifier,
 	}
 	return &userInfo, nil
