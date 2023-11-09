@@ -686,16 +686,16 @@ func AddUser(user *User) (bool, error) {
 
 		user.Id = id
 	}
-
+	
 	if user.Owner == "" || user.Name == "" {
 		return false, nil
 	}
-
+	
 	organization, _ := GetOrganizationByUser(user)
 	if organization == nil {
 		return false, nil
 	}
-
+	
 	if user.PasswordType == "" || user.PasswordType == "plain" {
 		user.UpdateUserPassword(organization)
 	}
@@ -724,7 +724,6 @@ func AddUser(user *User) (bool, error) {
 		return false, err
 	}
 	user.Ranking = int(count + 1)
-
 	affected, err := ormer.Engine.Insert(user)
 	if err != nil {
 		return false, err

@@ -276,6 +276,16 @@ type LinkedInUserEmail struct {
 	Handle1 string `json:"handle"`
 }
 
+type LinkedInUserDetails struct {
+	Sub string `json:"sub"`
+	Name string `json:"name"`
+	GivenName string `json:"given_name"`
+	FamilyName string `json:"family_name"`
+	Picture string `json:"picture"`
+	Email string `json:"email"`
+	EmailVerified bool `json:"email_verified"`
+}
+
 // GetUserInfo use LinkedInAccessToken gotten before return LinkedInUserInfo
 // get more detail via: https://docs.microsoft.com/en-us/linkedin/consumer/integrations/self-serve/sign-in-with-linkedin?context=linkedin/consumer/context
 func (idp *LinkedInIdProvider) GetUserInfo(token *oauth2.Token) (*UserInfo, error) {
@@ -288,28 +298,28 @@ func (idp *LinkedInIdProvider) GetUserInfo(token *oauth2.Token) (*UserInfo, erro
 		return nil, err
 	}
 
-	var linkedInUserEmail LinkedInUserEmail
-	bs, err = idp.GetUrlRespWithAuthorization("https://api.linkedIn.com/v2/emailAddress?q=members&projection=(elements*(handle~))", token.AccessToken)
+	var linkedInUserDet LinkedInUserDetails
+	bs, err = idp.GetUrlRespWithAuthorization("https://api.linkedin.com/v2/userinfo", token.AccessToken)
 	if err != nil {
 		return nil, err
 	}
-	if err = json.Unmarshal(bs, &linkedInUserEmail); err != nil {
+	if err = json.Unmarshal(bs, &linkedInUserDet); err != nil {
 		return nil, err
 	}
 
-	username := ""
-	for _, name := range linkedInUserInfo.FirstName.Localized {
-		username += name
-	}
-	for _, name := range linkedInUserInfo.LastName.Localized {
-		username += name
-	}
+	username := linkedInUserDet.Name
+	// for _, name := range linkedInUserInfo.FirstName.Localized {
+	// 	username += name
+	// }
+	// for _, name := range linkedInUserInfo.LastName.Localized {
+	// 	username += name
+	// }
 	userInfo := UserInfo{
 		Id:          linkedInUserInfo.Id,
 		DisplayName: username,
 		Username:    username,
-		Email:       linkedInUserEmail.Handle.EmailAddress,
-		AvatarUrl:   linkedInUserInfo.ProfilePicture.DisplayImage1.Elements[0].Identifiers[0].Identifier,
+		Email:       linkedInUserDet.Email,
+		AvatarUrl:   linkedInUserDet.Picture,
 	}
 	return &userInfo, nil
 }
