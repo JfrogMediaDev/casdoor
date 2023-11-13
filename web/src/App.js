@@ -681,6 +681,7 @@ class App extends Component {
         <Footer id="footer" style={
           {
             textAlign: "center",
+            backgroundColor: "#fff",
           }
         }>
           {/* {
