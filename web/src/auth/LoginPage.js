@@ -514,19 +514,6 @@ class LoginPage extends React.Component {
           size="large"
           ref={this.form}
         >
-          <Form.Item>
-            {
-              application.providers.filter(providerItem => this.isProviderVisible(providerItem)).map(providerItem => {
-                return ProviderButton.renderProviderLogo(providerItem.provider, application, 30, 5, "small", this.props.location, styles);
-              })
-            }
-            {
-              application.providers.filter(prov => this.isProviderVisible(prov)).length > 0 ? ProviderButton.DividerComponent(text, undefined, hrStyle, spanStyle) : null
-            }
-            {
-              this.renderOtherFormProvider(application)
-            }
-          </Form.Item>
           <Form.Item
             hidden={true}
             name="application"
@@ -623,6 +610,19 @@ class LoginPage extends React.Component {
             }
             {
               this.renderFooter(application)
+            }
+          </Form.Item>
+          <Form.Item>
+            {
+              application.providers.filter(prov => this.isProviderVisible(prov)).length > 0 ? ProviderButton.DividerComponent(text, undefined, hrStyle, spanStyle) : null
+            }
+            {
+              application.providers.filter(providerItem => this.isProviderVisible(providerItem)).map(providerItem => {
+                return ProviderButton.renderProviderLogo(providerItem.provider, application, 30, 5, "small", this.props.location, styles);
+              })
+            }
+            {
+              this.renderOtherFormProvider(application)
             }
           </Form.Item>
         </Form>

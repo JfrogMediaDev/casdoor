@@ -625,14 +625,6 @@ class SignupPage extends React.Component {
         >
         </Form.Item>
         {
-          application.providers.filter(providerItem => this.isProviderVisible(providerItem)).map(providerItem => {
-            return ProviderButton.renderProviderLogo(providerItem.provider, application, 30, 5, "small", this.props.location);
-          })
-        }
-        {
-          application.providers.filter(providerItem => this.isProviderVisible(providerItem)).length > 0 ? ProviderButton.DividerComponent(text) : null
-        }
-        {
           application.signupItems?.map(signupItem => this.renderFormItem(application, signupItem))
         }
         <Form.Item {...tailFormItemLayout}>
@@ -642,19 +634,29 @@ class SignupPage extends React.Component {
             </Button>
           </div>
           <div style={{marginTop: "0.5rem"}}>
-          &nbsp;&nbsp;{i18next.t("signup:Have account?")}&nbsp;
-            <a onClick={() => {
-              const linkInStorage = sessionStorage.getItem("signinUrl");
-              if (linkInStorage !== null && linkInStorage !== "") {
-                Setting.goToLink(linkInStorage);
-              } else {
-                Setting.redirectToLoginPage(application, this.props.history);
-              }
-            }}>
-              {i18next.t("signup:sign in now")}
-            </a>
+            <span style={{float: "right"}}>
+            &nbsp;&nbsp;{i18next.t("signup:Have account?")}&nbsp;
+              <a onClick={() => {
+                const linkInStorage = sessionStorage.getItem("signinUrl");
+                if (linkInStorage !== null && linkInStorage !== "") {
+                  Setting.goToLink(linkInStorage);
+                } else {
+                  Setting.redirectToLoginPage(application, this.props.history);
+                }
+              }}>
+                {i18next.t("signup:sign in now")}
+              </a>
+            </span>
           </div>
         </Form.Item>
+        {
+          application.providers.filter(providerItem => this.isProviderVisible(providerItem)).length > 0 ? ProviderButton.DividerComponent(text) : null
+        }
+        {
+          application.providers.filter(providerItem => this.isProviderVisible(providerItem)).map(providerItem => {
+            return ProviderButton.renderProviderLogo(providerItem.provider, application, 30, 5, "small", this.props.location);
+          })
+        }
       </Form>
     );
   }

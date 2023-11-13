@@ -15,7 +15,7 @@
       "Sync policies successfully": "Sincronizzazione delle politiche riuscita"
   },
   "application": {
-    "Or" : "Oppure usa l'email",
+    "Or" : "oppure",
     "Always": "Sempre",
     "Auto signin": "Ricordami",
     "Auto signin - Tooltip": "Quando esiste una sessione con accesso in Casdoor, essa viene utilizzata automaticamente per l'accesso lato applicazione",

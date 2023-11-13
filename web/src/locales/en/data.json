@@ -15,7 +15,7 @@
     "Sync policies successfully": "Sync policies successfully"
   },
   "application": {
-    "Or" : "Or use the email",
+    "Or" : "or",
     "Always": "Always",
     "Auto signin": "Remember me",
     "Auto signin - Tooltip": "When a logged-in session exists in Casdoor, it is automatically used for application-side login",

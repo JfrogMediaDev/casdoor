@@ -199,7 +199,7 @@ export const DividerComponent = (text, contStyle, hStyle, sStyle) => {
     justifyContent: "center",
     width: "20rem",
     marginBottom: "1.5rem",
-    marginTop: "1.5rem",
+    marginTop: "0.5rem",
   };
   if (contStyle !== undefined) {
     containerStyle = contStyle;
@@ -223,7 +223,7 @@ export const DividerComponent = (text, contStyle, hStyle, sStyle) => {
     color: "#111827", // Replace with your desired text color
     transform: "translateX(-80%)",
     background: "white",
-    left: "55%",
+    left: "50%",
   };
   if (sStyle !== undefined) {
     spanStyle = sStyle;
