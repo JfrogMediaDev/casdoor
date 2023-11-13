@@ -101,6 +101,7 @@ export function renderAgreementFormItem(application, required, layout, ths) {
       ]
       }
       {...layout}
+      style={{marginBottom: "-0.6rem"}}
       initialValue={initDefaultValue(application)}
     >
       <Checkbox style={{float: "left"}}>

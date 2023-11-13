@@ -486,7 +486,7 @@ class LoginPage extends React.Component {
         padding: "1rem", // Adjust as needed
         fontWeight: "bold",
         color: "#111827", // Replace with your desired text color
-        transform: "translateX(-50%)",
+        transform: "translateX(-80%)",
         background: "white",
         left: "50%",
       };
